@@ -36,6 +36,8 @@ public class Main {
         imprimirFuncionarios(funcionarios);
         System.out.println("######################################");
 
+        deletarFuncionario(funcionarios,"João");
+
         // Agrupando funcionários por função em um Map
         Map<String, List<Funcionario>> funcionariosPorFuncao = agruparFuncionariosPorFuncao(funcionarios);
 
@@ -91,6 +93,22 @@ public class Main {
         for (Funcionario funcionario : funcionarios) {
             imprimirFuncionario(funcionario, formatoData, decimalFormat);
         }
+    }
+    // Função para deletar um funcionário pelo nome
+    private static void deletarFuncionario(List<Funcionario> funcionarios, String nome) {
+        Iterator<Funcionario> iterator = funcionarios.iterator();
+
+        while (iterator.hasNext()) {
+            Funcionario funcionario = iterator.next();
+
+            if (funcionario.getNome().equals(nome)) {
+                iterator.remove();
+                System.out.println("Funcionário " + nome + " removido com sucesso.");
+                return;
+            }
+        }
+
+        System.out.println("Funcionário " + nome + " não encontrado.");
     }
 
     // Função para agrupar funcionários por função em um Map
